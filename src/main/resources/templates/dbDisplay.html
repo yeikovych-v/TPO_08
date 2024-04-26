@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title th:text="${title}"></title>
+</head>
+<body>
+<main layout:fragment="content">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Body</th>
+            <th>Time Serialized</th>
+            <th>Seconds to Expire</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="code : ${dtos}">
+            <td th:text="${code.id}"></td>
+            <td th:text="${code.body}"></td>
+            <td th:text="${code.timeSerialized}"></td>
+            <td th:text="${code.secondsToExpire}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/codeFormatter}" class="back-button">Back</a>
+</main>
+</body>
+</html>
