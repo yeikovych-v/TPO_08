@@ -12,12 +12,11 @@ import java.util.Map;
 @Repository
 public class InMemoryCodeFormatRepository {
 
-    private final Map<Integer, CodeFormat> codeFormats = new HashMap<>();
+    private final Map<String, CodeFormat> codeFormats = new HashMap<>();
 
     public void add(CodeFormat code) throws CodeIdAlreadyExistsException {
         if (codeFormats.containsKey(code.getId()))
             throw new CodeIdAlreadyExistsException("The code with given id already exists.");
-        if (code.getId() < 0) throw new CodeIdAlreadyExistsException("Id cannot be negative number.");
         System.out.printf("Info:: Successfully added [%s] to in memory db. %n", code);
         codeFormats.put(code.getId(), code);
     }
@@ -32,9 +31,9 @@ public class InMemoryCodeFormatRepository {
         }
     }
 
-    public void delete(int id) {
+    public void delete(String id) {
         codeFormats.remove(id);
-        System.out.printf("Info::InMemoryDB:: Record with index [%d] has expired and was deleted.%n", id);
+        System.out.printf("Info::InMemoryDB:: Record with index [%s] has expired and was deleted.%n", id);
     }
 
     public List<CodeFormat> findAllAsList() {
