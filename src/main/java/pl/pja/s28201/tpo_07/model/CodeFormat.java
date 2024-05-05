@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class CodeFormat implements Externalizable {
 
-    private int id;
+    private String id;
     private String body;
     private LocalDateTime timeSerialized;
     private long secondsToExpire = 10;
@@ -14,11 +14,11 @@ public class CodeFormat implements Externalizable {
     public CodeFormat() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -68,7 +68,7 @@ public class CodeFormat implements Externalizable {
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeInt(id);
+        out.writeObject(id);
         out.writeObject(body);
         out.writeObject(timeSerialized.toString());
         out.writeLong(secondsToExpire);
@@ -76,7 +76,7 @@ public class CodeFormat implements Externalizable {
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        id = in.readInt();
+        id = (String) in.readObject();
         body = (String) in.readObject();
         timeSerialized = LocalDateTime.parse((String) in.readObject());
         secondsToExpire = in.readLong();
