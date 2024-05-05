@@ -15,7 +15,7 @@ import pl.pja.s28201.tpo_07.service.FileAndSerializationService;
 import pl.pja.s28201.tpo_07.service.FormatterService;
 
 @Controller
-@RequestMapping("/codeFormatter")
+@RequestMapping("/")
 public class MainPageController {
 
     private final FormatterService formatterService;
