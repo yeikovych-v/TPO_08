@@ -50,7 +50,7 @@ public class CodeFormat implements Externalizable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CodeFormat that)) return false;
-        return id == that.id && Objects.equals(body, that.body);
+        return id.equals(that.id) && Objects.equals(body, that.body);
     }
 
     @Override
