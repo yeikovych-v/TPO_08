@@ -5,3 +5,7 @@ spring:
 serialization:
   src: src\main\resources\static\serial\
 
+server:
+  servlet:
+    context-path: /codeFormater
+
