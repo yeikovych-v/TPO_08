@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/codeFormatter/codes")
+@RequestMapping("/codes")
 public class RecordsViewController {
 
     private final InMemoryCodeFormatRepository repository;
