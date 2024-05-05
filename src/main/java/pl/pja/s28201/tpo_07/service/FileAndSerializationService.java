@@ -44,7 +44,7 @@ public class FileAndSerializationService {
 
                 out.writeObject(code);
 
-                System.out.printf("Info:: Serialized code object with id[%d]. %n", code.getId());
+                System.out.printf("Info:: Serialized code object with id[%s]. %n", code.getId());
             }
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
@@ -60,8 +60,8 @@ public class FileAndSerializationService {
         }
     }
 
-    public Map<Integer, CodeFormat> deserializeAll() {
-        Map<Integer, CodeFormat> resultMap = new HashMap<>();
+    public Map<String, CodeFormat> deserializeAll() {
+        Map<String, CodeFormat> resultMap = new HashMap<>();
 
         File[] files = new File(SERIALIZATION_DIR).listFiles();
 
