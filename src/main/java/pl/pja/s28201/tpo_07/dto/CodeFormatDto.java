@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class CodeFormatDto {
 
-    private int id;
+    private String id;
     private String body;
     private LocalDateTime timeSerialized;
     private Long secondsToExpire;
@@ -12,18 +12,18 @@ public class CodeFormatDto {
     public CodeFormatDto() {
     }
 
-    public CodeFormatDto(int id, String body, LocalDateTime timeSerialized, Long secondsToExpire) {
+        public CodeFormatDto(String id, String body, LocalDateTime timeSerialized, Long secondsToExpire) {
         this.id = id;
         this.body = body;
         this.timeSerialized = timeSerialized;
         this.secondsToExpire = secondsToExpire;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
