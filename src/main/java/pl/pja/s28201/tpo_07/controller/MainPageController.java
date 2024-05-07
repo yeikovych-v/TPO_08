@@ -43,24 +43,31 @@ public class MainPageController {
                                @ModelAttribute CodeFormat format) {
         System.out.println("POST::");
         try {
-            String formattedCode = formatterService.toFormattedString(format.getBody());
+            try {
+                String formattedCode = formatterService.toFormattedString(format.getBody());
 
-            model.addAttribute("formattedCode", formattedCode);
-            model.addAttribute("code", format);
-            addTitle(model);
+                model.addAttribute("formattedCode", formattedCode);
+                model.addAttribute("code", format);
+                addTitle(model);
 
-            format.setBody(formattedCode);
-            inMemoryRepository.add(format);
-            fileAndSerializationService.serialize(format);
+                format.setBody(formattedCode);
+                inMemoryRepository.add(format);
+                fileAndSerializationService.serialize(format);
 
-            return "main";
-        } catch (FormatterException e) {
-            System.out.println("Info:: Invalid java code format.");
+                return "main";
+            } catch (FormatterException e) {
+                System.out.println("Info:: Invalid java code format.");
 
-            addEmptyCode(model);
-            addTitle(model);
-            model.addAttribute("formatErrMsg", "Your code has compilation errors or is written in different language, impossible to format.");
-            return "main";
+                model.addAttribute("formattedCode", format.getBody());
+                model.addAttribute("code", format);
+                addTitle(model);
+
+                inMemoryRepository.add(format);
+                fileAndSerializationService.serialize(format);
+
+                model.addAttribute("formatErrMsg", "Your code has compilation errors or is written in different language, impossible to format.");
+                return "main";
+            }
         } catch (CodeIdAlreadyExistsException e) {
             System.out.println("Info:: Serialization Id Already Exists.");
 
